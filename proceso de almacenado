@@ -1,1 +1,18 @@
+PROCEDIMIENTO ALMACENADO
 
+
+create or replace function Eliminar_Vehiculo(vehcl int)
+returns bigint
+as
+$$
+begin
+delete from Vehiculo cascade where id_vehiculo=vehcl;
+raise notice 'los vehiculos que correspondieron a un mantenimiento han sido eliminados';
+end;
+$$
+language 'plpgsql'
+
+select Eliminar_vehiculo(4)
+
+
+REPORTE
