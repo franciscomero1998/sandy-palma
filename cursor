@@ -1,1 +1,19 @@
+CURSOR
 
+do
+$$
+declare 
+registro record;
+cur_productos cursor for select *from "producto" order by "nomproducto";
+
+begin
+open cur_productos;
+fetch cur_productos into registro;
+while (FOUND) loop
+RAISE NOTICE 'Nomproducto: %, Precio:%,Fechacaducidad:%,Stock:%', registro.nomproducto, 
+registro.precio,registro.fechacaducidad,registro.stock;
+fetch cur_productos into registro;
+end loop;
+end
+$$
+language 'plpgsql';
